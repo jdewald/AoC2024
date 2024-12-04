@@ -1,0 +1,1 @@
+ awk 'function abs(a) { if (a > 0) { return a; } return -a; } { delta=$2-$1; if (abs(delta) < 1 || abs(delta) > 3) { next} for (i=3;i<=NF;i++) { delta2=$i-$(i-1); if ((delta < 0 && delta2 > 0) || (delta > 0 && delta2 < 0)) { print $0, "x", $i,$(i-1),delta, delta2; next; } if (abs(delta2) <1 || abs(delta2) > 3) { next }}; cnt+=1; print $0 } END { print cnt}' input.txt
